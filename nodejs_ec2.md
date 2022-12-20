@@ -66,3 +66,19 @@ node --version
 * Ejecutar ***sudo yum update*** antes de realizar el proceso para no sobreescribir alguna actualización de AWS.
 * El proceso está realizado para instancias con arquitectura x86_64, para ARM se deben descargar los paquetes que corresponde desde https://centos.pkgs.org.
 * No realizar el proceso en modo **sudo**, excepto en la instalación de los paquetes rpm.
+* **PRECAUCIÓN:** Es posible que la instancia deje de funcionar o que el módulo sudo sea imposible de utilizar.
+
+# Opción 2
+
+Se puede instalar la imagen **Amazon Linux 2022 Preview** en la instancia para instalar alguna versión de node sobre la 18. Para esto:
+
+Instalar la última imagen de Amazon Linux 2022 (al2022):
+
+![al2022 ami ec2](https://gc-patcornejo.s3.sa-east-1.amazonaws.com/imgs/al2022_ec2.png)
+
+Una vez instalada, es posible instalar node a través de NVM
+
+## Notas Importantes
+
+* Esta es la mejor opción para instalar NodeJS 18 o 19.
+
