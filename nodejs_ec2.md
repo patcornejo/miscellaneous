@@ -1,4 +1,4 @@
-# Instalar NodeJS 18/19 en AWS EC2 - Amazon Linux 2
+# Instalar NodeJS 18/19 en AWS EC2 - Amazon Linux 2022
 
 Es común al intentar instalar una versión superior o igual a 18 de NodeJS en instancias AWS Linux 2 que aparezca el siguiente error:
 
@@ -9,28 +9,24 @@ node: /lib64/libc.so.6: version `GLIBC_2.28' not found (required by node)
 
 Esto debido a que las instancias Amazon Linux 2 vienen con GLIBC versión 2.26 y sólo es posible instalar versiones node 17 hacia abajo.
 
-Para proceder a instalar versiones superiores debemos:
+## Instalar Instancia EC2 Amazon Linux 2022
+Se puede instalar una instancia con la imagen **Amazon Linux 2022 Preview** para instalar alguna versión de node sobre la 18. Para esto:
 
-## Actualizar GLIBC a 2.28
+Ingresar al Catálogo de AMI desde la región que deseas instalar.
 
-Para esto primero descargamos los paquetes de glibc 2.28:
+![ami catalog 1](https://gc-patcornejo.s3.sa-east-1.amazonaws.com/imgs/ami_catalog_1.png)
 
-````bash
-wget https://vault.centos.org/centos/8/BaseOS/x86_64/os/Packages/glibc-2.28-164.el8.x86_64.rpm
-wget https://vault.centos.org/centos/8/BaseOS/x86_64/os/Packages/glibc-common-2.28-164.el8.x86_64.rpm
-wget https://vault.centos.org/centos/8/BaseOS/x86_64/os/Packages/glibc-devel-2.28-164.el8.x86_64.rpm
-wget https://vault.centos.org/centos/8/BaseOS/x86_64/os/Packages/glibc-headers-2.28-164.el8.x86_64.rpm
-wget https://vault.centos.org/centos/8/BaseOS/x86_64/os/Packages/nscd-2.28-164.el8.x86_64.rpm
-````
-Posteriormente, ejecutamos la instalación:
+Realizar búsqueda ***al2022*** y seleccionar los resultados de la comunidad.
 
-````bash
-sudo rpm --force --nodeps -Uvh glibc-2.28-164.el8.x86_64.rpm glibc-common-2.28-164.el8.x86_64.rpm glibc-devel-2.28-164.el8.x86_64.rpm glibc-headers-2.28-164.el8.x86_64.rpm nscd-2.28-164.el8.x86_64.rpm
-````
+![ami catalog 2](https://gc-patcornejo.s3.sa-east-1.amazonaws.com/imgs/ami_catalog_2.png)
 
-Esto instalar la versión glibc 2.28 en nuestra instancia, luego podemos instalar nodejs de la forma clásica.
+Seleccionar la primera opción e instalar una nueva instancia con esta imagen Amazon Linux 2022 (al2022):
 
-## Instalar NodeJS
+![ami catalog 3](https://gc-patcornejo.s3.sa-east-1.amazonaws.com/imgs/ami_catalog_3.png)
+
+Una vez instalada, es posible instalar node a través de NVM
+
+## Instalar NodeJS 18 / 19
 
 Descargar NVM:
 ```bash
@@ -59,26 +55,4 @@ Podemos comprobar que node se ha instalado correctamente:
 ```bash
 node --version
 ```
-
-
-## Notas importantes
-
-* Ejecutar ***sudo yum update*** antes de realizar el proceso para no sobreescribir alguna actualización de AWS.
-* El proceso está realizado para instancias con arquitectura x86_64, para ARM se deben descargar los paquetes que corresponde desde https://centos.pkgs.org.
-* No realizar el proceso en modo **sudo**, excepto en la instalación de los paquetes rpm.
-* **PRECAUCIÓN:** Es posible que la instancia deje de funcionar o que el módulo sudo sea imposible de utilizar.
-
-# Opción 2
-
-Se puede instalar la imagen **Amazon Linux 2022 Preview** en la instancia para instalar alguna versión de node sobre la 18. Para esto:
-
-Instalar la última imagen de Amazon Linux 2022 (al2022):
-
-![al2022 ami ec2](https://gc-patcornejo.s3.sa-east-1.amazonaws.com/imgs/al2022_ec2.png)
-
-Una vez instalada, es posible instalar node a través de NVM
-
-## Notas Importantes
-
-* Esta es la mejor opción para instalar NodeJS 18 o 19.
 

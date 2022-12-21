@@ -9,3 +9,7 @@ El objetivo de este repositorio es mostrar tutoriales para la instalación y adm
 ## 2. Instalar NodeJS 18/19 en AWS EC2 - Amazon Linux 2 - 2022
 
 [https://github.com/patcornejo/miscellaneous/blob/main/nodejs_ec2.md](https://github.com/patcornejo/miscellaneous/blob/main/nodejs_ec2.md)
+
+## 3. Instalar Asterisk v20 + PJSIP en AWS EC2 - Amazon Linux 2 - 2022
+
+[https://github.com/patcornejo/miscellaneous/blob/main/asterisk_ec2.md](https://github.com/patcornejo/miscellaneous/blob/main/asterisk_ec2.md)
